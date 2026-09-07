@@ -4,7 +4,6 @@
 
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
-
 const loginBtn = document.getElementById("loginBtn");
 const togglePassword = document.getElementById("togglePassword");
 
@@ -38,7 +37,6 @@ loginBtn.addEventListener("click", async () => {
 
     console.log("🔥 LOGIN BUTTON CLICKED");
 
-
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
 
@@ -49,7 +47,7 @@ loginBtn.addEventListener("click", async () => {
 
     if (!email || !password) {
 
-        alert("⚠ Please enter Email & Password.");
+        alert("⚠️ Please enter Email & Password.");
 
         return;
     }
@@ -57,7 +55,10 @@ loginBtn.addEventListener("click", async () => {
 
     try {
 
-        // Button loading
+        // ===============================
+        // Button Loading
+        // ===============================
+
         loginBtn.innerHTML = "Logging in...";
         loginBtn.disabled = true;
 
@@ -67,7 +68,7 @@ loginBtn.addEventListener("click", async () => {
         // ===============================
 
         const response = await fetch(
-            "http://localhost:5000/api/auth/login",
+            "https://padhaai-saathi.onrender.com/api/auth/login",
             {
                 method: "POST",
 
@@ -76,19 +77,52 @@ loginBtn.addEventListener("click", async () => {
                 },
 
                 body: JSON.stringify({
-                    email,
-                    password
+                    email: email,
+                    password: password
                 })
             }
         );
 
 
-        console.log("Login Status:", response.status);
+        // ===============================
+        // Response Status
+        // ===============================
+
+        console.log("🔥 Login Status:", response.status);
 
 
-        const data = await response.json();
+        // ===============================
+        // Read Response
+        // ===============================
 
-        console.log("Login Response:", data);
+        const responseText = await response.text();
+
+        console.log("🔥 Login Raw Response:", responseText);
+
+
+        let data;
+
+        try {
+
+            data = JSON.parse(responseText);
+
+        } catch (jsonError) {
+
+            console.error("❌ JSON Parse Error:", jsonError);
+
+            alert(
+                "❌ Server response invalid.\n\n" +
+                "Please try again after a few seconds."
+            );
+
+            loginBtn.innerHTML = "Login";
+            loginBtn.disabled = false;
+
+            return;
+        }
+
+
+        console.log("🔥 Login Response:", data);
 
 
         // ===============================
@@ -97,7 +131,27 @@ loginBtn.addEventListener("click", async () => {
 
         if (!response.ok) {
 
-            alert("❌ " + (data.message || "Login failed"));
+            alert(
+                "❌ " +
+                (data.message || "Invalid email or password.")
+            );
+
+            loginBtn.innerHTML = "Login";
+            loginBtn.disabled = false;
+
+            return;
+        }
+
+
+        // ===============================
+        // Check Token
+        // ===============================
+
+        if (!data.token) {
+
+            console.error("❌ Token missing:", data);
+
+            alert("❌ Login successful, but token was not received.");
 
             loginBtn.innerHTML = "Login";
             loginBtn.disabled = false;
@@ -110,29 +164,46 @@ loginBtn.addEventListener("click", async () => {
         // Login Successful
         // ===============================
 
-        alert("✅ Login Successful!");
+        console.log("✅ LOGIN SUCCESSFUL");
 
 
-        // JWT Token save
-        localStorage.setItem("token", data.token);
-
-
-        // User information save
+        // JWT Token Save
         localStorage.setItem(
-            "user",
-            JSON.stringify(data.user)
+            "token",
+            data.token
         );
 
 
-        // Login status
-        localStorage.setItem("isLoggedIn", "true");
+        // User Information Save
+        if (data.user) {
+
+            localStorage.setItem(
+                "user",
+                JSON.stringify(data.user)
+            );
+
+        }
+
+
+        // Login Status
+        localStorage.setItem(
+            "isLoggedIn",
+            "true"
+        );
+
+
+        // ===============================
+        // Success Message
+        // ===============================
+
+        alert("✅ Login Successful!");
 
 
         loginBtn.innerHTML = "✅ Login Successful";
 
 
         // ===============================
-        // Go to AI Chat
+        // Go To AI Chat
         // ===============================
 
         setTimeout(() => {
@@ -141,12 +212,21 @@ loginBtn.addEventListener("click", async () => {
 
         }, 800);
 
+    }
 
-    } catch (error) {
+
+    // ===============================
+    // Network / Connection Error
+    // ===============================
+
+    catch (error) {
 
         console.error("❌ Login Error:", error);
 
-        alert("❌ Unable to connect with server.");
+        alert(
+            "❌ Unable to connect with server.\n\n" +
+            "Please check your internet connection and try again."
+        );
 
         loginBtn.innerHTML = "Login";
         loginBtn.disabled = false;
