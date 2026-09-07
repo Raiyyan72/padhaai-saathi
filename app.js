@@ -245,7 +245,7 @@ function renderQuiz(reply) {
 
           const response =
             await fetch(
-              "http://localhost:5000/api/library",
+              "https://padhaai-saathi.onrender.com/api/library",
               {
 
                 method: "POST",
@@ -648,7 +648,7 @@ function addAiMessage(message, showSaveButton = true) {
         saveBtn.innerText = "⏳ Saving...";
 
         const response = await fetch(
-          "http://localhost:5000/api/library",
+          "https://padhaai-saathi.onrender.com/api/library",
           {
             method: "POST",
 
@@ -800,7 +800,7 @@ async function getAIResponse(message, mode) {
     }
 
     const response = await fetch(
-      "http://localhost:5000/api/chat",
+      "https://padhaai-saathi.onrender.com/api/chat",
       {
         method: "POST",
         headers: {
@@ -1617,7 +1617,7 @@ async function loadChatHistory() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/chat/history",
+            "https://padhaai-saathi.onrender.com/api/chat/history",
             {
                 method: "GET",
 
@@ -1825,7 +1825,7 @@ async function deleteSingleChat(chatId) {
 
         const response = await fetch(
 
-            `http://localhost:5000/api/chat/${chatId}`,
+            `https://padhaai-saathi.onrender.com/api/chat/${chatId}`,
 
             {
 
@@ -1927,7 +1927,7 @@ async function deleteChatHistory() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/chat/history",
+           "https://padhaai-saathi.onrender.com/api/chat/history",
             {
                 method: "DELETE",
 
@@ -2209,7 +2209,7 @@ async function loadLibrary() {
 
         const response = await fetch(
 
-            "http://localhost:5000/api/library",
+"https://padhaai-saathi.onrender.com/api/library",
 
             {
 
@@ -2743,7 +2743,7 @@ async function deleteLibraryItem(id) {
         const response =
             await fetch(
 
-                `http://localhost:5000/api/library/${id}`,
+                `https://padhaai-saathi.onrender.com/api/library/${id}`,
 
                 {
 
@@ -2842,7 +2842,7 @@ async function clearLibrary() {
         const response =
             await fetch(
 
-                "http://localhost:5000/api/library/clear",
+                "https://padhaai-saathi.onrender.com/api/library/clear",
 
                 {
 
@@ -2930,321 +2930,6 @@ function escapeLibraryHTML(text) {
 
 
 
-// progress
-
-// // ==========================================
-// // PROGRESS SYSTEM
-// // ==========================================
-
-// const progressBtn = document.getElementById("Progress");
-
-// const progressPanel =
-//     document.getElementById("progressPanel");
-
-
-// // ==========================================
-// // DEFAULT PROGRESS
-// // ==========================================
-
-// let progressData = JSON.parse(
-//     localStorage.getItem("padhaaiProgress")
-// ) || {
-
-//     totalChats: 0,
-
-//     totalQuestions: 0,
-
-//     totalNotes: 0,
-
-//     studyDays: [],
-
-//     currentStreak: 0,
-
-//     longestStreak: 0,
-
-// };
-
-
-
-// // ==========================================
-// // SAVE PROGRESS
-// // ==========================================
-
-// function saveProgress() {
-
-//     localStorage.setItem(
-//         "padhaaiProgress",
-//         JSON.stringify(progressData)
-//     );
-
-// }
-
-
-
-// // ==========================================
-// // UPDATE PROGRESS UI
-// // ==========================================
-
-// function updateProgressUI() {
-
-//     const totalChats =
-//         progressData.totalChats || 0;
-
-//     const totalQuestions =
-//         progressData.totalQuestions || 0;
-
-//     const totalNotes =
-//         progressData.totalNotes || 0;
-
-
-//     document.getElementById(
-//         "totalChats"
-//     ).innerText = totalChats;
-
-
-//     document.getElementById(
-//         "totalQuestions"
-//     ).innerText = totalQuestions;
-
-
-//     document.getElementById(
-//         "totalNotes"
-//     ).innerText = totalNotes;
-
-
-//     // ==========================================
-//     // CALCULATE OVERALL PROGRESS
-//     // ==========================================
-
-//     const score =
-//         totalChats +
-//         totalQuestions +
-//         totalNotes;
-
-
-//     const percentage =
-//         Math.min(
-//             100,
-//             score * 2
-//         );
-
-
-//     document.getElementById(
-//         "overallProgress"
-//     ).innerText = percentage + "%";
-
-
-//     document.getElementById(
-//         "progressPercentage"
-//     ).innerText = percentage + "%";
-
-
-//     document.getElementById(
-//         "progressBar"
-//     ).style.width = percentage + "%";
-
-
-//     // ==========================================
-//     // STUDY DAYS
-//     // ==========================================
-
-//     document.getElementById(
-//         "studyDays"
-//     ).innerText =
-//         progressData.studyDays.length;
-
-
-//     document.getElementById(
-//         "streakDays"
-//     ).innerText =
-//         progressData.currentStreak;
-
-
-//     document.getElementById(
-//         "longestStreak"
-//     ).innerText =
-//         progressData.longestStreak;
-
-// }
-
-
-
-// // ==========================================
-// // RECORD STUDY ACTIVITY
-// // ==========================================
-
-// function recordStudyActivity() {
-
-//     const today =
-//         new Date()
-//             .toISOString()
-//             .split("T")[0];
-
-
-//     if (
-//         !progressData.studyDays.includes(today)
-//     ) {
-
-//         progressData.studyDays.push(today);
-
-//         progressData.currentStreak++;
-
-//         if (
-//             progressData.currentStreak >
-//             progressData.longestStreak
-//         ) {
-
-//             progressData.longestStreak =
-//                 progressData.currentStreak;
-
-//         }
-
-//     }
-
-
-//     saveProgress();
-
-//     updateProgressUI();
-
-// }
-
-
-
-// // ==========================================
-// // PROGRESS BUTTON
-// // ==========================================
-
-// progressBtn.addEventListener(
-//     "click",
-//     () => {
-
-//         progressPanel.style.display =
-//             "block";
-
-//         updateProgressUI();
-
-//     }
-// );
-
-
-
-// // ==========================================
-// // RESET PROGRESS
-// // ==========================================
-
-// const resetProgressBtn =
-//     document.getElementById(
-//         "resetProgressBtn"
-//     );
-
-
-// resetProgressBtn.addEventListener(
-//     "click",
-//     () => {
-
-//         const confirmReset =
-//             confirm(
-//                 "Are you sure you want to reset your progress?"
-//             );
-
-
-//         if (!confirmReset) return;
-
-
-//         progressData = {
-
-//             totalChats: 0,
-
-//             totalQuestions: 0,
-
-//             totalNotes: 0,
-
-//             studyDays: [],
-
-//             currentStreak: 0,
-
-//             longestStreak: 0,
-
-//         };
-
-
-//         saveProgress();
-
-//         updateProgressUI();
-
-//     }
-// );
-
-
-
-// // ==========================================
-// // INITIAL LOAD
-// // ==========================================
-
-// updateProgressUI();
-
-// // ==========================================
-// // PROGRESS PANEL
-// // ==========================================const progressBtn = document.getElementById("Progress");
-
-
-
-
-
-// document.addEventListener("DOMContentLoaded", () => {
-
-//     const progressBtn = document.getElementById("Progress");
-//     const progressPanel = document.getElementById("progressPanel");
-//     const backToHomeBtn = document.getElementById("backToHomeBtn");
-
-//     const chatBox = document.querySelector(".chat-box");
-//     const inputArea = document.querySelector(".input-area");
-
-//     // =========================
-//     // INITIAL STATE
-//     // =========================
-
-//     progressPanel.hidden = true;
-
-
-//     // =========================
-//     // OPEN PROGRESS
-//     // =========================
-
-//     progressBtn.addEventListener("click", () => {
-
-//         chatBox.hidden = true;
-//         inputArea.hidden = true;
-
-//         progressPanel.hidden = false;
-
-//         // Force Progress to occupy main content area
-//         progressPanel.style.display = "block";
-//         progressPanel.style.width = "100%";
-//         progressPanel.style.maxWidth = "100%";
-//         progressPanel.style.boxSizing = "border-box";
-//     });
-
-
-//     // =========================
-//     // BACK TO HOME
-//     // =========================
-
-//     backToHomeBtn.addEventListener("click", () => {
-
-//         progressPanel.hidden = true;
-
-//         chatBox.hidden = false;
-//         inputArea.hidden = false;
-
-//         // Remove inline styles
-//         progressPanel.style.display = "";
-//         progressPanel.style.width = "";
-//         progressPanel.style.maxWidth = "";
-//         progressPanel.style.boxSizing = "";
-//     });
-
-// });
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -3346,7 +3031,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // =========================
 
             const progressResponse = await fetch(
-                "http://localhost:5000/api/progress",
+                "https://padhaai-saathi.onrender.com/api/progress",
                 {
                     method: "GET",
                     headers: {
@@ -3501,7 +3186,7 @@ if (progressBar) {
 
 
             const statsResponse = await fetch(
-                "http://localhost:5000/api/chat/stats",
+                "https://padhaai-saathi.onrender.com/api/chat/stats",
                 {
                     method: "GET",
                     headers: {
@@ -4316,7 +4001,7 @@ async function saveSettings() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/settings",
+            "https://padhaai-saathi.onrender.com/api/settings",
             {
                 method: "PUT",
 
@@ -4553,7 +4238,7 @@ async function loadSettingsFromBackend() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/settings",
+            "https://padhaai-saathi.onrender.com/api/settings",
             {
                 method: "GET",
 
