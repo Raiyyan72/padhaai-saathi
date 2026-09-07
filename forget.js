@@ -21,7 +21,7 @@ resetBtn.addEventListener("click", async () => {
         console.log("🚀 Calling backend...");
 
         const response = await fetch(
-            "http://localhost:5000/api/auth/forgot-password",
+            "https://padhaai-saathi.onrender.com/api/auth/forgot-password",
             {
                 method: "POST",
 

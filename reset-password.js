@@ -52,7 +52,7 @@ if (!resetBtn) {
             console.log("🚀 Sending request to backend...");
 
             const response = await fetch(
-                "http://localhost:5000/api/auth/reset-password",
+                "https://padhaai-saathi.onrender.com/api/auth/reset-password",
                 {
                     method: "POST",
 
