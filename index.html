@@ -1,0 +1,2381 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Padhaai Saathi - AI Study Assistant</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+        
+      <div class="logo">PADHAAI <span>SAATHI</span></div>
+
+      <ul>
+        <li id="home">🏠 Home</li>
+
+        <li id="Ai-tutor">🤖 AI Tutor</li>
+
+        <li id="notes">📝 Notes</li>
+
+        <li id="quize-Generator">🧠 Quiz Generator</li>
+
+        <li id="study-Planer">📅 Focus Mode</li>
+
+        <li id="library">📚 My Library</li>
+
+        <li id="Progress"  >📊 Progress</li>
+
+        <li id="setting">⚙ Settings</li>
+
+       
+
+        <li id="logout">🚪 Logout</li>
+
+         <li id="chatHistory">💬 Chat History</li>
+
+
+<div id="historyList"></div>
+
+<button id="newChatBtn">➕ New Chat</button>
+      </ul>
+    </aside>
+
+    <!--main-->
+    <main class="main">
+
+    <!-- Navbar -->
+    <nav>
+        <!-- <button id="menuBtn">☰</button> -->
+
+        <h2>🤖 AI Study Assistant</h2>
+
+        <div class="nav-right">
+            <div class="nav-right">
+                <span id="userName"></span>
+               
+<!-- ================================
+     PROFILE BUTTON
+================================ -->
+
+<button class="profile-btn">👤</button>
+   
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- =========================
+         MAIN CONTENT AREA
+    ========================== -->
+
+    <div class="main-content" id="mainContent">
+
+        <!-- =========================
+             HOME CONTENT
+        ========================== -->
+
+        <div id="homeContent" class="home-content">
+
+            <!-- Chat Area -->
+            <section class="chat-box">
+
+                <div class="welcome">
+                    <h1>👋 Welcome to Padhaai Saathi</h1>
+                    <p>Your Personal AI Study Partner</p>
+                </div>
+
+
+                <!-- Quick Cards -->
+                 
+<div class="hero-cards">
+
+    <!-- Explain Topic -->
+    <div class="card tool-card" data-mode="chat">
+        <div class="card-icon">📚</div>
+
+        <h3>Explain Topic</h3>
+
+        <p>Learn any concept easily.</p>
+    </div>
+
+
+    <!-- Summarize Notes -->
+    <div class="card tool-card" data-mode="notes">
+        <div class="card-icon">📝</div>
+
+        <h3>Summarize Notes</h3>
+
+        <p>Convert long notes into short points.</p>
+    </div>
+
+
+    <!-- Generate Quiz -->
+    <div class="card tool-card" data-mode="quiz">
+        <div class="card-icon">🧠</div>
+
+        <h3>Generate Quiz</h3>
+
+        <p>Practice with AI generated MCQs.</p>
+    </div>
+
+
+    <!-- Study Plan -->
+     
+    <div class="card tool-card" data-mode="planner">
+        <div class="card-icon">📅</div>
+
+        <h3>Create Study Plan</h3>
+
+        <p>Plan your daily learning schedule.</p>
+    </div>
+
+</div>
+
+
+
+
+                <!-- Chat -->
+                <div class="chat-container">
+
+                    <div class="ai-message">
+                        🤖 <b>Padhaai Saathi</b>
+
+                        <p class="p1">
+                            Hello! 👋 Main tumhara AI Study Partner hu.
+                            Mujhse kisi bhi subject ke questions puch sakte ho.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Input -->
+            <div class="input-area">
+
+               <button class="attach-btn" id="attachBtn" type="button">
+    📎
+</button>
+
+<input
+    type="file"
+    id="fileInput"
+    style="display: none;"
+>
+
+<div id="filePreview" class="file-preview"></div>
+                <input
+                    type="text"
+                    id="serchbar"
+                    placeholder="Ask anything..."
+                />
+
+                <button class="mic-btn" id="mic-btn" type="button">
+    <span class="mic-icon">🎤</span>
+
+    <span class="voice-wave">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </span>
+</button>
+
+                <button class="send-btn">➤</button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PROGRESS CONTENT
+        ========================== -->
+
+        <div id="progressContent" class="progress-content">
+
+            <div id="progressPanel" class="progress-panel">
+
+                <!-- Back Button -->
+                <div class="progress-header">
+
+                    <button
+                        id="backToHomeBtn"
+                        class="progress-back-btn"
+                    >
+                        ← Back to Home
+                    </button>
+
+                    <div class="progress-heading">
+
+                        <span class="progress-label">
+                            LEARNING DASHBOARD
+                        </span>
+
+                        <h2>📊 Your Progress</h2>
+
+                        <p>
+                            Track your learning journey with Padhaai Saathi.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Stats -->
+                <div class="progress-stats">
+
+                    <div class="progress-card">
+                        <div class="progress-icon">💬</div>
+
+                        <div>
+                            <span>Total Chats</span>
+                            <strong id="totalChats">0</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="progress-card">
+                        <div class="progress-icon">🧠</div>
+
+                        <div>
+                            <span>Questions Asked</span>
+                            <strong id="totalQuestions">0</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="progress-card">
+                        <div class="progress-icon">📚</div>
+
+                        <div>
+                            <span>Study Sessions</span>
+                            <strong id="studySessions">0</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="progress-card">
+                        <div class="progress-icon">🔥</div>
+
+                        <div>
+                            <span>Current Streak</span>
+                            <strong id="currentStreak">0</strong>
+                            <small>days</small>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Main Grid -->
+                <div class="progress-main-grid">
+
+                    <div class="progress-box learning-box">
+
+                        <div class="box-header">
+
+                            <div>
+                                <span class="box-label">
+                                    YOUR JOURNEY
+                                </span>
+
+                                <h3>🎯 Learning Progress</h3>
+                            </div>
+
+                            <strong id="overallProgress">0%</strong>
+
+                        </div>
+
+
+                        <div class="progress-circle-wrapper">
+
+                            <div class="progress-circle">
+
+                                <div class="progress-circle-inner">
+
+                                    <strong id="progressPercentage">
+                                        0%
+                                    </strong>
+
+                                    <span>Completed</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="progress-bar-area">
+
+                            <div class="progress-bar-header">
+                                <span>Overall Progress</span>
+                                <span id="progressBarText">0%</span>
+                            </div>
+
+                            <div class="progress-bar-container">
+
+                                <div
+                                    id="progressBar"
+                                    class="progress-bar"
+                                    style="width: 0%;"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Activity -->
+                    <div class="progress-box">
+
+                        <div class="box-header">
+
+                            <div>
+                                <span class="box-label">
+                                    ACTIVITY
+                                </span>
+
+                                <h3>🔥 Study Activity</h3>
+                            </div>
+
+                        </div>
+
+
+                        <div class="activity-grid">
+
+                            <div class="activity-item">
+                                <span>📅</span>
+                                <strong id="studyDays2">0</strong>
+                                <small>Study Days</small>
+                            </div>
+
+                            <div class="activity-item">
+                                <span>🔥</span>
+                                <strong id="streakDays">0</strong>
+                                <small>Current Streak</small>
+                            </div>
+
+                            <div class="activity-item">
+                                <span>⏱️</span>
+                                <strong id="studyMinutes">0</strong>
+                                <small>Study Minutes</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Weekly Activity -->
+                <div class="progress-box weekly-progress">
+
+                    <div class="box-header">
+
+                        <div>
+                            <span class="box-label">
+                                THIS WEEK
+                            </span>
+
+                            <h3>📈 Weekly Activity</h3>
+                        </div>
+
+                        <span class="weekly-status">
+                            Keep going 🚀
+                        </span>
+
+                    </div>
+<div class="weekly-chart" id="weeklyChart">
+
+    <div class="chart-column">
+        <div class="chart-bar"></div>
+        <span>Mon</span>
+    </div>
+
+    <div class="chart-column">
+        <div class="chart-bar"></div>
+        <span>Tue</span>
+    </div>
+
+    <div class="chart-column">
+        <div class="chart-bar"></div>
+        <span>Wed</span>
+    </div>
+
+    <div class="chart-column">
+        <div class="chart-bar"></div>
+        <span>Thu</span>
+    </div>
+
+    <div class="chart-column">
+        <div class="chart-bar"></div>
+        <span>Fri</span>
+    </div>
+
+    <div class="chart-column">
+        <div class="chart-bar"></div>
+        <span>Sat</span>
+    </div>
+
+    <div class="chart-column">
+        <div class="chart-bar"></div>
+        <span>Sun</span>
+    </div>
+
+</div>
+
+
+                <!-- Bottom Grid -->
+                <div class="progress-bottom-grid">
+
+                    <!-- Summary -->
+                    <div class="progress-box">
+
+                        <div class="box-header">
+
+                            <div>
+                                <span class="box-label">
+                                    SUMMARY
+                                </span>
+
+                                <h3>📚 Study Summary</h3>
+                            </div>
+
+                        </div>
+
+
+                        <div class="summary-list">
+
+                            <div class="summary-row">
+                                <span>💬 Total conversations</span>
+                                <strong id="summaryChats">0</strong>
+                            </div>
+
+                            <div class="summary-row">
+                                <span>🧠 Questions solved</span>
+                                <strong id="summaryQuestions">0</strong>
+                            </div>
+
+                            <div class="summary-row">
+                                <span>⏱️ Study time</span>
+                                <strong id="summaryMinutes">0 min</strong>
+                            </div>
+
+                            <div class="summary-row">
+                                <span>🔥 Current streak</span>
+                                <strong id="summaryStreak">0 days</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AI Insight -->
+                    <div class="progress-box ai-insight-box">
+
+                        <div class="box-header">
+
+                            <div>
+                                <span class="box-label">
+                                    AI INSIGHT
+                                </span>
+
+                                <h3>🤖 Study Insight</h3>
+                            </div>
+
+                        </div>
+
+
+                        <div class="ai-insight">
+
+                            <div class="ai-insight-icon">
+                                ✨
+                            </div>
+
+                            <div>
+
+                                <h4 id="aiProgressTitle">
+                                    Keep learning!
+                                </h4>
+
+                                <p id="aiProgressMessage">
+                                    Start studying with Padhaai Saathi
+                                    to build your learning progress.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Achievements -->
+                <div class="progress-box achievements-box">
+
+                    <div class="box-header">
+
+                        <div>
+                            <span class="box-label">
+                                ACHIEVEMENTS
+                            </span>
+
+                            <h3>🏆 Your Achievements</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="achievement-grid">
+
+                        <div class="achievement-card">
+
+                            <div class="achievement-icon">
+                                🌱
+                            </div>
+
+                            <div>
+                                <strong>First Step</strong>
+                                <span>
+                                    Start your learning journey
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="achievement-card">
+
+                            <div class="achievement-icon">
+                                🔥
+                            </div>
+
+                            <div>
+                                <strong>3 Day Streak</strong>
+                                <span>
+                                    Study for 3 consecutive days
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="achievement-card">
+
+                            <div class="achievement-icon">
+                                🧠
+                            </div>
+
+                            <div>
+                                <strong>50 Questions</strong>
+                                <span>
+                                    Ask 50 questions
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="achievement-card">
+
+                            <div class="achievement-icon">
+                                🚀
+                            </div>
+
+                            <div>
+                                <strong>Consistent Learner</strong>
+                                <span>
+                                    Keep your learning streak alive
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+<!-- ==========================================
+     PROGRESS DASHBOARD
+========================================== -->
+
+<div id="progressPanel" class="progress-panel">
+
+    <!-- Back Button -->
+    <div class="progress-header">
+
+        <button id="backToHomeBtn" class="progress-back-btn">
+            ← Back to Home
+        </button>
+
+        <div class="progress-heading">
+            <span class="progress-label">LEARNING DASHBOARD</span>
+            <h2>📊 Your Progress</h2>
+            <p>Track your learning journey with Padhaai Saathi.</p>
+        </div>
+
+    </div>
+
+
+    <!-- Stats -->
+    <div class="progress-stats">
+
+        <div class="progress-card">
+            <div class="progress-icon">💬</div>
+            <div>
+                <span>Total Chats</span>
+                <strong id="totalChats">0</strong>
+            </div>
+        </div>
+
+        <div class="progress-card">
+            <div class="progress-icon">🧠</div>
+            <div>
+                <span>Questions Asked</span>
+                <strong id="totalQuestions">0</strong>
+            </div>
+        </div>
+
+        <div class="progress-card">
+            <div class="progress-icon">📚</div>
+            <div>
+                <span>Study Sessions</span>
+                <strong id="studySessions">0</strong>
+            </div>
+        </div>
+
+        <div class="progress-card">
+            <div class="progress-icon">🔥</div>
+            <div>
+                <span>Current Streak</span>
+                <strong id="currentStreak">0</strong>
+                <small>days</small>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Main Grid -->
+    <div class="progress-main-grid">
+
+        <!-- Overall Progress -->
+        <div class="progress-box learning-box">
+
+            <div class="box-header">
+                <div>
+                    <span class="box-label">YOUR JOURNEY</span>
+                    <h3>🎯 Learning Progress</h3>
+                </div>
+
+                <strong id="overallProgress">0%</strong>
+            </div>
+
+            <!-- Circle -->
+            <div class="progress-circle-wrapper">
+
+                <div class="progress-circle">
+
+                    <div class="progress-circle-inner">
+                        <strong id="progressPercentage">0%</strong>
+                        <span>Completed</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Bar -->
+            <div class="progress-bar-area">
+
+                <div class="progress-bar-header">
+                    <span>Overall Progress</span>
+                    <span id="progressBarText">0%</span>
+                </div>
+
+                <div class="progress-bar-container">
+
+                    <div
+                        id="progressBar"
+                        class="progress-bar"
+                        style="width: 0%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Activity -->
+        <div class="progress-box">
+
+            <div class="box-header">
+                <div>
+                    <span class="box-label">ACTIVITY</span>
+                    <h3>🔥 Study Activity</h3>
+                </div>
+            </div>
+
+            <div class="activity-grid">
+
+                <div class="activity-item">
+                    <span>📅</span>
+                    <strong id="studyDays">0</strong>
+                    <small>Study Days</small>
+                </div>
+
+                <div class="activity-item">
+                    <span>🔥</span>
+                    <strong id="streakDays">0</strong>
+                    <small>Current Streak</small>
+                </div>
+
+                <div class="activity-item">
+                    <span>⏱️</span>
+                    <strong id="studyMinutes">0</strong>
+                    <small>Study Minutes</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Weekly Activity -->
+    <div class="progress-box weekly-progress">
+
+        <div class="box-header">
+
+            <div>
+                <span class="box-label">THIS WEEK</span>
+                <h3>📈 Weekly Activity</h3>
+            </div>
+
+            <span class="weekly-status">
+                Keep going 🚀
+            </span>
+
+        </div>
+
+
+        <div class="weekly-chart">
+
+            <div class="chart-column">
+                <div class="chart-bar" style="height:35%;"></div>
+                <span>Mon</span>
+            </div>
+
+            <div class="chart-column">
+                <div class="chart-bar" style="height:60%;"></div>
+                <span>Tue</span>
+            </div>
+
+            <div class="chart-column">
+                <div class="chart-bar" style="height:45%;"></div>
+                <span>Wed</span>
+            </div>
+
+            <div class="chart-column">
+                <div class="chart-bar" style="height:75%;"></div>
+                <span>Thu</span>
+            </div>
+
+            <div class="chart-column">
+                <div class="chart-bar" style="height:55%;"></div>
+                <span>Fri</span>
+            </div>
+
+            <div class="chart-column">
+                <div class="chart-bar" style="height:30%;"></div>
+                <span>Sat</span>
+            </div>
+
+            <div class="chart-column">
+                <div class="chart-bar" style="height:50%;"></div>
+                <span>Sun</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Bottom Grid -->
+    <div class="progress-bottom-grid">
+
+        <!-- Summary -->
+        <div class="progress-box">
+
+            <div class="box-header">
+                <div>
+                    <span class="box-label">SUMMARY</span>
+                    <h3>📚 Study Summary</h3>
+                </div>
+            </div>
+
+            <div class="summary-list">
+
+                <div class="summary-row">
+                    <span>💬 Total conversations</span>
+                    <strong id="summaryChats">0</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>🧠 Questions solved</span>
+                    <strong id="summaryQuestions">0</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>⏱️ Study time</span>
+                    <strong id="summaryMinutes">0 min</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>🔥 Current streak</span>
+                    <strong id="summaryStreak">0 days</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- AI Insight -->
+        <div class="progress-box ai-insight-box">
+
+            <div class="box-header">
+                <div>
+                    <span class="box-label">AI INSIGHT</span>
+                    <h3>🤖 Study Insight</h3>
+                </div>
+            </div>
+
+            <div class="ai-insight">
+
+                <div class="ai-insight-icon">
+                    ✨
+                </div>
+
+                <div>
+                    <h4 id="aiProgressTitle">
+                        Keep learning!
+                    </h4>
+
+                    <p id="aiProgressMessage">
+                        Start studying with Padhaai Saathi
+                        to build your learning progress.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Achievements -->
+    <div class="progress-box achievements-box">
+
+        <div class="box-header">
+
+            <div>
+                <span class="box-label">ACHIEVEMENTS</span>
+                <h3>🏆 Your Achievements</h3>
+            </div>
+
+        </div>
+
+
+        <div class="achievement-grid">
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🌱</div>
+
+                <div>
+                    <strong>First Step</strong>
+                    <span>Start your learning journey</span>
+                </div>
+            </div>
+
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🔥</div>
+
+                <div>
+                    <strong>3 Day Streak</strong>
+                    <span>Study for 3 consecutive days</span>
+                </div>
+            </div>
+
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🧠</div>
+
+                <div>
+                    <strong>50 Questions</strong>
+                    <span>Ask 50 questions</span>
+                </div>
+            </div>
+
+
+            <div class="achievement-card">
+                <div class="achievement-icon">🚀</div>
+
+                <div>
+                    <strong>Consistent Learner</strong>
+                    <span>Keep your learning streak alive</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+ <!--setting  -->
+<!-- ========================= -->
+<!--      SETTINGS PANEL       -->
+<!-- ========================= -->
+
+<div class="settings-overlay" id="settingsOverlay"></div>
+
+<div class="settings-panel" id="settingsPanel">
+
+    <!-- HEADER -->
+    <div class="settings-header">
+
+        <div class="settings-title">
+
+            <span class="settings-main-icon">⚙️</span>
+
+            <div>
+                <h2>Settings</h2>
+                <p>Customize your Padhaai Saathi</p>
+            </div>
+
+        </div>
+
+        <button
+            class="settings-close"
+            id="settingsClose"
+            type="button"
+            aria-label="Close settings"
+        >
+            ✕
+        </button>
+
+    </div>
+
+
+    <!-- SETTINGS BODY -->
+    <div class="settings-body">
+
+
+        <!-- ========================= -->
+        <!--      LEFT NAVIGATION      -->
+        <!-- ========================= -->
+
+        <div class="settings-nav">
+
+
+            <!-- PROFILE -->
+            <button
+                class="settings-nav-item active"
+                type="button"
+                data-section="profileSection"
+            >
+                <span>👤</span>
+                <span>Profile</span>
+            </button>
+
+
+            <!-- AI PREFERENCES -->
+            <button
+                class="settings-nav-item"
+                type="button"
+                data-section="aiPreferences"
+            >
+                <span>🧠</span>
+                <span>AI Preferences</span>
+            </button>
+
+
+            <!-- CHAT SETTINGS -->
+            <button
+                class="settings-nav-item"
+                type="button"
+                data-section="chatSettings"
+            >
+                <span>💬</span>
+                <span>Chat Settings</span>
+            </button>
+
+
+            <!-- STUDY TOOLS -->
+            <button
+                class="settings-nav-item"
+                type="button"
+                data-section="studyTools"
+            >
+                <span>📚</span>
+                <span>Study Tools</span>
+            </button>
+
+
+            <!-- ABOUT -->
+            <button
+                class="settings-nav-item"
+                type="button"
+                data-section="aboutSection"
+            >
+                <span>ℹ️</span>
+                <span>About</span>
+            </button>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!--       RIGHT CONTENT       -->
+        <!-- ========================= -->
+
+        <div class="settings-content">
+
+
+            <!-- ========================= -->
+            <!--          PROFILE           -->
+            <!-- ========================= -->
+
+            <section
+                class="settings-page active"
+                id="profileSection"
+            >
+
+                <div class="settings-page-heading">
+
+                    <div class="heading-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <h3>My Profile</h3>
+
+                        <p>
+                            Manage your Padhaai Saathi profile.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROFILE CARD -->
+
+                <div class="profile-settings-card">
+
+
+                    <!-- PROFILE PHOTO -->
+
+                    <div class="profile-photo-area">
+
+                        <div class="profile-avatar-wrapper">
+
+                            <img
+                                id="profileImage"
+                                class="profile-avatar"
+                                src="https://ui-avatars.com/api/?name=User&background=7c5cff&color=fff&size=200"
+                                alt="Profile Photo"
+                            >
+
+
+                            <!-- CHANGE PHOTO BUTTON -->
+
+                            <button
+                                type="button"
+                                id="changePhotoBtn"
+                                class="change-photo-btn"
+                                title="Change Profile Photo"
+                            >
+                                📷
+                            </button>
+
+                        </div>
+
+
+                        <!-- HIDDEN FILE INPUT -->
+
+                        <input
+                            type="file"
+                            id="profilePhotoInput"
+                            accept="image/png,image/jpeg,image/webp"
+                            hidden
+                        >
+
+
+                        <!-- REMOVE PHOTO -->
+
+                        <button
+                            type="button"
+                            id="removePhotoBtn"
+                            class="remove-photo-btn"
+                        >
+                            🗑️ Remove Photo
+                        </button>
+
+                    </div>
+
+
+                    <!-- USER INFORMATION -->
+
+                    <div class="profile-user-info">
+
+
+                        <!-- MAIN USER INFO -->
+
+                        <div class="profile-user-main">
+
+                            <h2 id="profileName">
+                                User
+                            </h2>
+
+                            <p id="profileEmail">
+                                Welcome to Padhaai Saathi
+                            </p>
+
+                        </div>
+
+
+                        <!-- NAME -->
+
+                        <div class="profile-info-row">
+
+                            <div class="profile-info-icon">
+                                👤
+                            </div>
+
+                            <div class="profile-info-content">
+
+                                <span>
+                                    Name
+                                </span>
+
+                                <strong id="profileNameText">
+                                    User
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="profile-info-row">
+
+                            <div class="profile-info-icon">
+                                📧
+                            </div>
+
+                            <div class="profile-info-content">
+
+                                <span>
+                                    Email
+                                </span>
+
+                                <strong id="profileEmailText">
+                                    user@email.com
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROFILE SAVE STATUS -->
+
+                <div class="settings-save-status">
+
+                    <span>✨</span>
+
+                    <span>
+                        Your profile photo is saved automatically
+                    </span>
+
+                    <strong>
+                        ✓ Saved
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ========================= -->
+            <!--       AI PREFERENCES      -->
+            <!-- ========================= -->
+
+            <section
+                class="settings-page"
+                id="aiPreferences"
+            >
+
+                <div class="settings-page-heading">
+
+                    <div class="heading-icon">
+                        🧠
+                    </div>
+
+                    <div>
+
+                        <h3>AI Preferences</h3>
+
+                        <p>
+                            Customize how Padhaai Saathi
+                            responds to your questions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AI RESPONSE STYLE -->
+
+                <div class="preference-card">
+
+                    <div class="preference-heading">
+
+                        <div>
+
+                            <h4>✨ AI Response Style</h4>
+
+                            <p>
+                                How should Padhaai Saathi respond?
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="option-grid">
+
+
+                        <!-- CONCISE -->
+
+                        <label class="option-card">
+
+                            <input
+                                type="radio"
+                                name="responseStyle"
+                                value="concise"
+                            >
+
+                            <div class="option-content">
+
+                                <span class="option-icon">
+                                    💬
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Concise
+                                    </strong>
+
+                                    <small>
+                                        Short & to the point
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </label>
+
+
+                        <!-- BALANCED -->
+
+                        <label class="option-card selected">
+
+                            <input
+                                type="radio"
+                                name="responseStyle"
+                                value="balanced"
+                                checked
+                            >
+
+                            <div class="option-content">
+
+                                <span class="option-icon">
+                                    ⚖️
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Balanced
+                                    </strong>
+
+                                    <small>
+                                        Well-rounded explanations
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </label>
+
+
+                        <!-- DETAILED -->
+
+                        <label class="option-card">
+
+                            <input
+                                type="radio"
+                                name="responseStyle"
+                                value="detailed"
+                            >
+
+                            <div class="option-content">
+
+                                <span class="option-icon">
+                                    📖
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Detailed
+                                    </strong>
+
+                                    <small>
+                                        In-depth with examples
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- STUDY LEVEL -->
+
+                <div class="preference-card">
+
+                    <div class="preference-heading">
+
+                        <div>
+
+                            <h4>🎓 Study Level</h4>
+
+                            <p>
+                                Set your current level for better assistance.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="option-grid">
+
+
+                        <!-- BEGINNER -->
+
+                        <label class="option-card">
+
+                            <input
+                                type="radio"
+                                name="studyLevel"
+                                value="beginner"
+                            >
+
+                            <div class="option-content">
+
+                                <span class="option-icon">
+                                    🌱
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Beginner
+                                    </strong>
+
+                                    <small>
+                                        Basic concepts & simple terms
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </label>
+
+
+                        <!-- INTERMEDIATE -->
+
+                        <label class="option-card selected">
+
+                            <input
+                                type="radio"
+                                name="studyLevel"
+                                value="intermediate"
+                                checked
+                            >
+
+                            <div class="option-content">
+
+                                <span class="option-icon">
+                                    🚀
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Intermediate
+                                    </strong>
+
+                                    <small>
+                                        Balanced learning & practical examples
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </label>
+
+
+                        <!-- ADVANCED -->
+
+                        <label class="option-card">
+
+                            <input
+                                type="radio"
+                                name="studyLevel"
+                                value="advanced"
+                            >
+
+                            <div class="option-content">
+
+                                <span class="option-icon">
+                                    🧠
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Advanced
+                                    </strong>
+
+                                    <small>
+                                        Deep concepts & expert level
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EXPLANATION MODE -->
+
+                <div class="preference-card">
+
+                    <div class="preference-heading">
+
+                        <div>
+
+                            <h4>💡 Explanation Mode</h4>
+
+                            <p>
+                                Choose how explanations should be presented.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="option-grid">
+
+
+                        <!-- SIMPLE -->
+
+                        <label class="option-card">
+
+                            <input
+                                type="radio"
+                                name="explanationMode"
+                                value="simple"
+                            >
+
+                            <div class="option-content">
+
+                                <span class="option-icon">
+                                    😊
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Simple
+                                    </strong>
+
+                                    <small>
+                                        Easy language & basic ideas
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </label>
+
+
+                        <!-- STANDARD -->
+
+                        <label class="option-card selected">
+
+                            <input
+                                type="radio"
+                                name="explanationMode"
+                                value="standard"
+                                checked
+                            >
+
+                            <div class="option-content">
+
+                                <span class="option-icon">
+                                    📘
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Standard
+                                    </strong>
+
+                                    <small>
+                                        Clear & structured explanation
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </label>
+
+
+                        <!-- STEP BY STEP -->
+
+                        <label class="option-card">
+
+                            <input
+                                type="radio"
+                                name="explanationMode"
+                                value="step-by-step"
+                            >
+
+                            <div class="option-content">
+
+                                <span class="option-icon">
+                                    🪜
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Step-by-step
+                                    </strong>
+
+                                    <small>
+                                        Detailed steps with examples
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SAVE STATUS -->
+
+                <div class="settings-save-status">
+
+                    <span>✨</span>
+
+                    <span>
+                        Your preferences are saved automatically
+                    </span>
+
+                    <strong>
+                        ✓ Saved
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ========================= -->
+            <!--       CHAT SETTINGS       -->
+            <!-- ========================= -->
+
+            <section
+                class="settings-page"
+                id="chatSettings"
+            >
+
+                <div class="settings-page-heading">
+
+                    <div class="heading-icon">
+                        💬
+                    </div>
+
+                    <div>
+
+                        <h3>Chat Settings</h3>
+
+                        <p>
+                            Customize your chatting experience.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ENTER TO SEND -->
+
+                <div class="toggle-setting">
+
+                    <div class="toggle-info">
+
+                        <span class="toggle-icon">
+                            ↵
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Enter to Send
+                            </strong>
+
+                            <small>
+                                Press Enter to send your message
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="enterToSendToggle"
+                            checked
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- AUTO SCROLL -->
+
+                <div class="toggle-setting">
+
+                    <div class="toggle-info">
+
+                        <span class="toggle-icon">
+                            ⬇️
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Auto Scroll
+                            </strong>
+
+                            <small>
+                                Automatically scroll to latest message
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="autoScrollToggle"
+                            checked
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- VOICE INPUT -->
+
+                <div class="toggle-setting">
+
+                    <div class="toggle-info">
+
+                        <span class="toggle-icon">
+                            🎤
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Voice Input
+                            </strong>
+
+                            <small>
+                                Show voice input option in chat
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="voiceInputToggle"
+                            checked
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ========================= -->
+            <!--        STUDY TOOLS        -->
+            <!-- ========================= -->
+
+            <section
+                class="settings-page"
+                id="studyTools"
+            >
+
+                <div class="settings-page-heading">
+
+                    <div class="heading-icon">
+                        📚
+                    </div>
+
+                    <div>
+
+                        <h3>Study Tools</h3>
+
+                        <p>
+                            Manage your learning preferences.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FOCUS MODE -->
+
+                <div class="toggle-setting">
+
+                    <div class="toggle-info">
+
+                        <span class="toggle-icon">
+                            🎯
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Focus Mode
+                            </strong>
+
+                            <small>
+                                Reduce distractions while studying
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="focusModeToggle"
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- STUDY REMINDERS -->
+
+                <div class="toggle-setting">
+
+                    <div class="toggle-info">
+
+                        <span class="toggle-icon">
+                            ⏰
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Study Reminders
+                            </strong>
+
+                            <small>
+                                Get reminders for your study sessions
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="studyReminderToggle"
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- SMART SUGGESTIONS -->
+
+                <div class="toggle-setting">
+
+                    <div class="toggle-info">
+
+                        <span class="toggle-icon">
+                            💡
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Smart Suggestions
+                            </strong>
+
+                            <small>
+                                Get AI-powered study suggestions
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="smartSuggestionToggle"
+                            checked
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ========================= -->
+            <!--           ABOUT           -->
+            <!-- ========================= -->
+
+            <section
+                class="settings-page"
+                id="aboutSection"
+            >
+
+                <div class="settings-page-heading">
+
+                    <div class="heading-icon">
+                        👨‍💻
+                    </div>
+
+                    <div>
+
+                        <h3>About Padhaai Saathi</h3>
+
+                        <p>
+                            Your AI-powered study companion.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AUTHOR CARD -->
+
+                <div class="author-card">
+
+                    <div class="author-avatar">
+                        👨‍💻
+                    </div>
+
+
+                    <div class="author-info">
+
+                        <h4>
+                            Raiyyan Khan
+                        </h4>
+
+                        <span>
+                            B.Tech CSE Student & Developer
+                        </span>
+
+                        <p>
+                            I'm the creator of Padhaai Saathi,
+                            built with the idea of making learning
+                            simpler, smarter, and more accessible
+                            with AI.
+                        </p>
+
+
+                        <a
+                            href="https://raiyyans-portpholio72.netlify.app/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="portfolio-btn"
+                        >
+                            🌐 Meet the Developer
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- APP INFO -->
+
+                <div class="app-info-card">
+
+                    <div>
+
+                        <span>
+                            Application
+                        </span>
+
+                        <strong>
+                            Padhaai Saathi
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Version
+                        </span>
+
+                        <strong>
+                            1.0.0
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Technology
+                        </span>
+
+                        <strong>
+                            AI + Web
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FOOTER -->
+
+                <div class="settings-footer">
+
+                    <span>
+                        Made with ❤️ & Code
+                    </span>
+
+                    <small>
+                        Padhaai Saathi
+                    </small>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= STUDY PLANNER UI ================= -->
+
+<div id="plannerModal" class="planner-modal">
+
+    <div class="planner-box">
+
+        <!-- Header -->
+        <div class="planner-header">
+
+            <div class="planner-icon">
+                📅
+            </div>
+
+            <div class="planner-title">
+                <h2>Create Study Plan</h2>
+
+                <p>
+                    Tell me what you want to study and I'll
+                    create a balanced timetable for you.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                id="closePlanner"
+                class="planner-close"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- Subjects -->
+        <div class="planner-subjects">
+
+            <div class="planner-label">
+                📚 Your Subjects
+            </div>
+
+            <div id="subjectList">
+
+                <div class="planner-subject-row">
+
+                    <input
+                        type="text"
+                        class="planner-subject-input"
+                        placeholder="e.g. Data Structures"
+                    >
+
+                    <select class="planner-priority">
+                        <option value="high">
+                            High
+                        </option>
+
+                        <option value="medium" selected>
+                            Medium
+                        </option>
+
+                        <option value="low">
+                            Low
+                        </option>
+                    </select>
+
+                    <button
+                        type="button"
+                        class="planner-remove"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="addSubject"
+                class="planner-add"
+            >
+                + Add Subject
+            </button>
+
+        </div>
+
+
+        <!-- Planner Options -->
+        <div class="planner-options">
+
+            <!-- Daily Time -->
+            <div class="planner-option">
+
+                <label>
+                    ⏰ Daily Study Time
+                </label>
+
+                <select id="studyHours">
+
+                    <option value="2">
+                        2 Hours
+                    </option>
+
+                    <option value="3">
+                        3 Hours
+                    </option>
+
+                    <option value="4" selected>
+                        4 Hours
+                    </option>
+
+                    <option value="5">
+                        5 Hours
+                    </option>
+
+                    <option value="6">
+                        6 Hours
+                    </option>
+
+                    <option value="7">
+                        7 Hours
+                    </option>
+
+                    <option value="8">
+                        8 Hours
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Study Days -->
+            <div class="planner-option">
+
+                <label>
+                    📅 Study Days
+                </label>
+
+                <select id="studyDays">
+
+                    <option value="1">
+                        1 Day
+                    </option>
+
+                    <option value="3">
+                        3 Days
+                    </option>
+
+                    <option value="5" selected>
+                        5 Days
+                    </option>
+
+                    <option value="7">
+                        7 Days
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Start Time -->
+            <div class="planner-option">
+
+                <label>
+                    🌅 Start Time
+                </label>
+
+                <input
+                    type="time"
+                    id="startTime"
+                    value="18:00"
+                >
+
+            </div>
+
+
+            <!-- Break -->
+            <div class="planner-option">
+
+                <label>
+                    ☕ Break Duration
+                </label>
+
+                <select id="breakMinutes">
+
+                    <option value="5">
+                        5 Minutes
+                    </option>
+
+                    <option value="10" selected>
+                        10 Minutes
+                    </option>
+
+                    <option value="15">
+                        15 Minutes
+                    </option>
+
+                    <option value="20">
+                        20 Minutes
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- Generate -->
+        <button
+            type="button"
+            id="generatePlanner"
+            class="planner-generate"
+        >
+            🤖 Generate My Timetable
+        </button>
+
+
+        <!-- Result -->
+        <div
+            id="plannerResult"
+            class="planner-result"
+        >
+
+            <div class="planner-result-top">
+
+                <h3>
+                    ✨ Your Personalized Timetable
+                </h3>
+
+                <button
+                    type="button"
+                    id="copyPlanner"
+                    class="planner-copy"
+                >
+                    📋 Copy
+                </button>
+
+            </div>
+
+
+            <div id="plannerOutput">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= END STUDY PLANNER ================= -->
+
+
+
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
+
+

@@ -1,0 +1,630 @@
+/* ===========================
+        RESET
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at top left,#7b2ff744,transparent 35%),
+    radial-gradient(circle at bottom right,#00c6ff44,transparent 35%),
+    #0b1020;
+
+    color:#fff;
+
+}
+
+
+/* ===========================
+        Background
+=========================== */
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+}
+
+.circle{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(30px);
+
+    animation:float 10s ease-in-out infinite;
+
+}
+
+.c1{
+
+    width:260px;
+
+    height:260px;
+
+    background:#7b2ff7;
+
+    top:-80px;
+
+    left:-80px;
+
+}
+
+.c2{
+
+    width:220px;
+
+    height:220px;
+
+    background:#00c6ff;
+
+    right:-70px;
+
+    bottom:-60px;
+
+    animation-delay:2s;
+
+}
+
+.c3{
+
+    width:180px;
+
+    height:180px;
+
+    background:#9b5cff;
+
+    top:50%;
+
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    animation-delay:4s;
+
+}
+
+
+/* ===========================
+        Signup Card
+=========================== */
+
+.signup-card{
+
+    width:420px;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.35);
+
+    position:relative;
+
+    overflow:hidden;
+
+    animation:cardFloat 5s ease-in-out infinite;
+
+}
+
+.signup-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:70%;
+
+    height:100%;
+
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.25),
+        transparent
+    );
+
+    transform:skewX(-25deg);
+
+    animation:shine 5s infinite;
+
+}
+
+
+/* ===========================
+        Heading
+=========================== */
+
+.signup-card h1{
+
+    text-align:center;
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+    text-shadow:0 0 20px #7b2ff7;
+
+}
+
+.signup-card p{
+
+    text-align:center;
+
+    color:#ddd;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ===========================
+        Inputs
+=========================== */
+
+.input-box{
+
+    position:relative;
+
+    margin-bottom:20px;
+
+}
+
+.input-box input{
+
+    width:100%;
+
+    height:55px;
+
+    padding:0 18px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:40px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    color:#fff;
+
+    font-size:15px;
+
+    transition:.35s;
+
+}
+
+.input-box input::placeholder{
+
+    color:#cfcfcf;
+
+}
+
+.input-box input:focus{
+
+    box-shadow:
+    0 0 18px rgba(0,198,255,.4);
+
+    transform:translateY(-2px);
+
+}
+
+
+/* Password Eye */
+
+#togglePassword{
+
+    position:absolute;
+
+    right:20px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    cursor:pointer;
+
+    user-select:none;
+
+}
+
+/* ===========================
+        BUTTONS
+=========================== */
+
+#signupBtn{
+
+    width:100%;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:40px;
+
+    cursor:pointer;
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    background:linear-gradient(
+        135deg,
+        #7b2ff7,
+        #00c6ff
+    );
+
+    transition:.35s;
+
+    box-shadow:
+    0 10px 25px rgba(0,198,255,.35);
+
+}
+
+#signupBtn:hover{
+
+    transform:
+        translateY(-5px)
+        scale(1.03);
+
+    box-shadow:
+    0 18px 35px rgba(0,198,255,.55);
+
+}
+
+#signupBtn:active{
+
+    transform:scale(.96);
+
+}
+
+
+/* ===========================
+      GOOGLE BUTTON
+=========================== */
+
+.google{
+
+    width:100%;
+
+    height:55px;
+
+    margin-top:15px;
+
+    border:none;
+
+    border-radius:40px;
+
+    cursor:pointer;
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:500;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    transition:.35s;
+
+}
+
+.google:hover{
+
+    transform:
+        translateY(-5px);
+
+    background:linear-gradient(
+        135deg,
+        #7b2ff7,
+        #00c6ff
+    );
+
+    box-shadow:
+    0 18px 35px rgba(0,198,255,.45);
+
+}
+
+
+/* ===========================
+        LOGIN LINK
+=========================== */
+
+.login{
+
+    margin-top:22px;
+
+    text-align:center;
+
+    color:#ddd;
+
+}
+
+.login a{
+
+    color:#00c6ff;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+.login a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+/* ===========================
+      SHINE ANIMATION
+=========================== */
+
+@keyframes shine{
+
+    0%{
+
+        left:-120%;
+
+    }
+
+    40%{
+
+        left:130%;
+
+    }
+
+    100%{
+
+        left:130%;
+
+    }
+
+}
+
+
+/* ===========================
+      FLOAT ANIMATION
+=========================== */
+
+@keyframes cardFloat{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+}
+
+@keyframes float{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-25px);
+
+    }
+
+}
+
+
+/* ===========================
+        RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+    .signup-card{
+
+        width:90%;
+
+        padding:30px 22px;
+
+    }
+
+    .signup-card h1{
+
+        font-size:28px;
+
+    }
+
+    .signup-card p{
+
+        font-size:14px;
+
+    }
+
+    .input-box input{
+
+        height:52px;
+
+        font-size:15px;
+
+    }
+
+    #signupBtn,
+    .google{
+
+        height:52px;
+
+        font-size:15px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .signup-card{
+
+        width:95%;
+
+        padding:25px 18px;
+
+        border-radius:20px;
+
+    }
+
+    .signup-card h1{
+
+        font-size:24px;
+
+    }
+
+    .signup-card p{
+
+        font-size:13px;
+
+    }
+
+    .circle{
+
+        filter:blur(45px);
+
+    }
+
+}
+
+
+/* ===========================
+        PREMIUM EFFECTS
+=========================== */
+
+.signup-card:hover{
+
+    transform:
+        perspective(1000px)
+        rotateX(4deg)
+        rotateY(-4deg)
+        scale(1.02);
+
+    transition:.5s;
+
+    box-shadow:
+    0 25px 70px rgba(0,198,255,.25);
+
+}
+
+.input-box input:hover{
+
+    border-color:#00c6ff;
+
+}
+
+.input-box input:focus{
+
+    border-color:#00c6ff;
+
+    background:rgba(255,255,255,.12);
+
+}
+
+
+/* ===========================
+        SELECTION
+=========================== */
+
+::selection{
+
+    background:#00c6ff;
+
+    color:#fff;
+
+}
+
+
+/* ===========================
+        SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(
+        #7b2ff7,
+        #00c6ff
+    );
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#0b1020;
+
+}
+
+
+/* ===========================
+        PERFORMANCE
+=========================== */
+
+.signup-card,
+#signupBtn,
+.google,
+.input-box input{
+
+    will-change:transform;
+
+}
