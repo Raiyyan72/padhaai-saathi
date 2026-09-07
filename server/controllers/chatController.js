@@ -12,7 +12,7 @@ const path = require("path");
 const os = require("os");
 const crypto = require("crypto");
 
-const Chat = require("../models/Chat");
+const Chat = require("../models/chat");
 const Progress = require("../models/progress");
 
 
