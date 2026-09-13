@@ -4,7 +4,6 @@ const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const confirmPassword = document.getElementById("confirmPassword");
-
 const signupBtn = document.getElementById("signupBtn");
 const togglePassword = document.getElementById("togglePassword");
 
@@ -52,20 +51,23 @@ signupBtn.addEventListener("click", async () => {
     });
 
 
+    // ===============================
     // Validation
+    // ===============================
+
     if (!name || !email || !password || !confirm) {
 
         alert("⚠ Please fill all fields.");
-
         return;
+
     }
 
 
     if (password !== confirm) {
 
         alert("❌ Passwords do not match.");
-
         return;
+
     }
 
 
@@ -77,8 +79,12 @@ signupBtn.addEventListener("click", async () => {
         signupBtn.disabled = true;
 
 
+        // ===============================
+        // Backend Request
+        // ===============================
+
         const response = await fetch(
-            "http://localhost:5000/api/auth/register",
+            "https://padhaai-saathi.onrender.com/api/auth/register",
             {
                 method: "POST",
 
@@ -103,6 +109,10 @@ signupBtn.addEventListener("click", async () => {
         console.log("Backend Response:", data);
 
 
+        // ===============================
+        // Backend Error
+        // ===============================
+
         if (!response.ok) {
 
             alert(data.message || "Signup failed");
@@ -111,14 +121,17 @@ signupBtn.addEventListener("click", async () => {
             signupBtn.disabled = false;
 
             return;
+
         }
 
 
+        // ===============================
+        // Success
+        // ===============================
+
         alert("✅ Account Created Successfully!");
 
-
         window.location.href = "login.html";
-
 
     } catch (error) {
 
@@ -134,29 +147,22 @@ signupBtn.addEventListener("click", async () => {
 });
 
 
-
-signupBtn.addEventListener("click", async () => {
-
-    console.log("🔥 SIGNUP BUTTON CLICKED");
-
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-    const confirm = confirmPassword.value.trim();
-
-    // ...
-});
-
-
+// ===============================
+// Password Security Alert
+// ===============================
 
 let passwordAlertShown = false;
 
 passwordInput.addEventListener("focus", () => {
+
     if (!passwordAlertShown) {
+
         alert(
-            "🔐 Please create a new password for Padhaai Saathi. Do not use your Original Gmail account password."
+            "🔐 Please create a new password for Padhaai Saathi. Do not use your original Gmail account password."
         );
 
         passwordAlertShown = true;
+
     }
+
 });
