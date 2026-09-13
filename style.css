@@ -6782,3 +6782,80 @@ nav h2 {
 
 
 
+
+
+/* mobile keyboard */
+
+/* =========================================================
+   MOBILE KEYBOARD VIEWPORT FIX
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    html,
+    body {
+        height: 100%;
+        min-height: 100%;
+    }
+
+    .main {
+        height: 100dvh;
+        min-height: 0;
+    }
+
+    .main-content,
+    .home-content {
+        height: 100%;
+        min-height: 0;
+    }
+
+    nav {
+        flex-shrink: 0;
+        position: relative;
+        z-index: 500;
+    }
+
+    .chat-box {
+        min-height: 0;
+        flex: 1 1 auto;
+        overflow-y: auto;
+    }
+
+    .input-area {
+        flex-shrink: 0;
+        position: relative;
+        z-index: 501;
+    }
+
+    #serchbar {
+        position: relative;
+        z-index: 502;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .main {
+        height: 100dvh;
+    }
+
+    nav {
+        min-height: 58px;
+    }
+
+    .input-area {
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+    }
+
+    #serchbar {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+}
+
+

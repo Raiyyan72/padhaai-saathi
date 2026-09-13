@@ -5927,3 +5927,31 @@ console.log(
     "✅ Profile system initialized"
 );
 
+
+
+
+// keyboard purpose
+
+/* =========================================================
+   MOBILE KEYBOARD VIEWPORT FIX
+   ========================================================= */
+
+function fixMobileKeyboardViewport() {
+    if (!window.visualViewport) return;
+
+    const updateViewport = () => {
+        const viewportHeight = window.visualViewport.height;
+
+        document.documentElement.style.setProperty(
+            "--visual-viewport-height",
+            `${viewportHeight}px`
+        );
+    };
+
+    window.visualViewport.addEventListener("resize", updateViewport);
+    window.visualViewport.addEventListener("scroll", updateViewport);
+
+    updateViewport();
+}
+
+fixMobileKeyboardViewport();
